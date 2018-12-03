@@ -1,6 +1,10 @@
 package com.hw.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * @Description 自定义自动注入 Autowired 注解
@@ -12,8 +16,10 @@ import java.lang.annotation.*;
 @Target({ElementType.CONSTRUCTOR, ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Autowired {
+
     /**
-     * 是否必须
+     * Declares whether the annotated dependency is required.
+     * @return
      */
     boolean required() default true;
 }

@@ -1,6 +1,10 @@
 package com.hw.controller;
 
-import com.hw.annotation.*;
+import com.hw.annotation.Autowired;
+import com.hw.annotation.Controller;
+import com.hw.annotation.Qualifier;
+import com.hw.annotation.RequestMapping;
+import com.hw.annotation.RequestParam;
 import com.hw.service.BusinessService;
 
 /**
@@ -14,13 +18,13 @@ import com.hw.service.BusinessService;
 public class BusinessController {
 
 
-    @Quatifier("businessServiceImpl1")
+    @Qualifier
     @Autowired
-    private BusinessService businessService1;
+    private BusinessService businessServiceImpl1;
 
-    @Quatifier("businessServiceImpl2")
+    @Qualifier("businessServiceImpl2")
     @Autowired
-    private BusinessService businessService2;
+    private BusinessService businessService;
 
 
     @RequestMapping("/home")
@@ -31,12 +35,16 @@ public class BusinessController {
 
     @RequestMapping("/service1/person")
     public String personS1(@RequestParam String id) {
-        return businessService1.getPerson(id);
+        String name = businessServiceImpl1.getPerson(id);
+        System.out.println(name);
+        return name;
     }
 
     @RequestMapping("/service2/person")
     public String personS2(@RequestParam String id) {
-        return businessService2.getPerson(id);
+        String name = businessService.getPerson(id);
+        System.out.println(name);
+        return name;
     }
 
 
